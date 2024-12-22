@@ -227,3 +227,31 @@ body {
 .blog-post p {
   margin: 5px 0;
 }
+.contact-form input,
+.contact-form textarea {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.contact-form button {
+  width: 100%;
+  padding: 12px;
+  background-color: #333;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.contact-form button:hover {
+  background-color: #555;
+}
+
+#formMessage {
+  margin-top: 15px;
+  font-size: 1rem;
+  font-weight: bold;
+}

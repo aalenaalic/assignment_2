@@ -11,6 +11,13 @@
       href="https://cdn.jsdelivr.net/npm/toastr/build/toastr.min.css"
       rel="stylesheet"
     />
+
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"
+      integrity="sha512-..."
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
   </head>
   <body>
     <nav class="navbar">
@@ -23,11 +30,6 @@
       <button id="theme-toggle">Toggle Theme</button>
       <button id="font-size-toggle">Toggle Font Size</button>
     </nav>
-
-    <section id="gallery" class="section">
-      <h2>Gallery</h2>
-      <div id="imgGallery"></div>
-    </section>
 
     <section id="faq" class="section">
       <h2>FAQ</h2>
@@ -84,10 +86,47 @@
       <div id="blogPostsContainer"></div>
     </section>
 
-    <section id="weather" class="section">
-      <h2>Weather</h2>
-      <div id="weatherInfo"></div>
+    <section id="contact" class="section">
+      <h2>Contact</h2>
+      <form id="contactForm" class="contact-form">
+        <input
+          type="text"
+          id="name"
+          name="name"
+          placeholder="Your Name"
+          required
+        />
+        <input
+          type="email"
+          id="email"
+          name="email"
+          placeholder="Your Email"
+          required
+        />
+        <textarea
+          id="message"
+          name="message"
+          placeholder="Your Message"
+          required
+        ></textarea>
+        <button type="submit">Send Message</button>
+      </form>
+      <div id="formMessage"></div>
     </section>
+    <button id="viewMoreBtn">View More</button>
+    <table id="dataTable">
+      <tr>
+        <td>Item 1</td>
+        <td>
+          <button class="editBtn">Edit</button>
+          <button class="deleteBtn">Delete</button>
+        </td>
+      </tr>
+    </table>
+
+    <div id="weather">
+      <p id="weatherInfo">Loading weather data...</p>
+    </div>
 
     <footer class="footer">
       <p>IT Burch</p>

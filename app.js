@@ -43,12 +43,10 @@ document.addEventListener("DOMContentLoaded", function () {
       const answer = this.nextElementSibling;
       const isVisible = answer.style.display === "block";
 
-      // Sakrij sve odgovore
       document.querySelectorAll(".faq-answer").forEach((a) => {
         a.style.display = "none";
       });
 
-      // Ako odgovor nije već vidljiv, prikaži ga
       if (!isVisible) {
         answer.style.display = "block";
       }
@@ -74,7 +72,6 @@ document.addEventListener("DOMContentLoaded", () => {
     header.addEventListener("click", () => {
       const content = header.nextElementSibling;
 
-      // Toggle the display of the content
       if (content.style.display === "block") {
         content.style.display = "none";
       } else {
@@ -88,7 +85,6 @@ document.addEventListener("DOMContentLoaded", () => {
   const strengthIndicator = document.getElementById("strength-indicator");
   const form = document.getElementById("contact-form");
 
-  // Password strength validation
   passwordInput.addEventListener("input", () => {
     const password = passwordInput.value;
     const strength = getPasswordStrength(password);
@@ -96,7 +92,6 @@ document.addEventListener("DOMContentLoaded", () => {
     strengthIndicator.style.color = getStrengthColor(strength);
   });
 
-  // Form validation
   form.addEventListener("submit", (event) => {
     if (!form.checkValidity()) {
       event.preventDefault();
@@ -104,7 +99,6 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  // Password strength calculation
   function getPasswordStrength(password) {
     const lengthCriteria = password.length >= 8;
     const numberCriteria = /\d/.test(password);
@@ -128,7 +122,6 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
-  // Determine color based on strength
   function getStrengthColor(strength) {
     switch (strength) {
       case "Strong":
@@ -141,12 +134,10 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 });
 $(document).ready(function () {
-  // Fetch the JSON data
   $.getJSON("content.json", function (data) {
     const blogPosts = data.blogPosts;
     const container = $("#blogPostsContainer");
 
-    // Iterate over each blog post and create HTML elements
     blogPosts.forEach(function (post) {
       const postElement = `
         <div class="blog-post">
@@ -156,6 +147,107 @@ $(document).ready(function () {
         </div>
       `;
       container.append(postElement);
+    });
+  });
+});
+document.getElementById("myForm").addEventListener("submit", function (event) {
+  event.preventDefault();
+
+  const formData = new FormData(this);
+
+  fetch("your-server-endpoint", {
+    method: "POST",
+    body: formData,
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      if (data.success) {
+        alert("Form submitted successfully!");
+      } else {
+        alert("Error: " + data.error);
+      }
+    })
+    .catch((error) => {
+      console.error("Error:", error);
+    });
+});
+const express = require("express");
+const app = express();
+const port = 3000;
+
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
+
+app.post("/your-server-endpoint", (req, res) => {
+  const formData = req.body;
+  console.log(formData);
+  res.json({ success: true });
+});
+
+app.listen(port, () => {
+  console.log(`Server listening at http://localhost:${port}`);
+});
+toastr.success("Your action was successful!");
+
+toastr.error("An error occurred.");
+document.getElementById("viewMoreBtn").addEventListener("click", function () {
+  window.open("details.html", "_blank");
+});
+document.querySelectorAll(".editBtn").forEach((button) => {
+  button.addEventListener("click", function () {
+    const row = this.closest("tr");
+    row.cells[0].textContent = "Edited Item";
+    toastr.success("Item edited successfully.");
+  });
+});
+
+document.querySelectorAll(".deleteBtn").forEach((button) => {
+  button.addEventListener("click", function () {
+    const row = this.closest("tr");
+    row.remove();
+    toastr.success("Item deleted successfully.");
+  });
+});
+const apiKey = "your-api-key";
+const city = "Amsterdam";
+const apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
+
+fetch(apiUrl)
+  .then((response) => {
+    if (!response.ok) {
+      throw new Error("Network response was not ok");
+    }
+    return response.json();
+  })
+  .then((data) => {
+    const weatherInfo = `Temperature: ${data.main.temp}°C, Weather: ${data.weather[0].description}`;
+    document.getElementById("weatherInfo").textContent = weatherInfo;
+  })
+  .catch((error) => {
+    console.error("Error fetching weather data:", error);
+    document.getElementById("weatherInfo").textContent =
+      "Failed to load weather data.";
+  });
+document.addEventListener("DOMContentLoaded", function () {
+  // Handle Edit button
+  document.querySelectorAll(".editBtn").forEach((button) => {
+    button.addEventListener("click", function () {
+      const row = button.closest("tr");
+      const itemCell = row.querySelector("td:first-child");
+      const newItem = prompt("Edit item:", itemCell.textContent);
+      if (newItem !== null) {
+        itemCell.textContent = newItem;
+      }
+    });
+  });
+
+  // Handle Delete button
+  document.querySelectorAll(".deleteBtn").forEach((button) => {
+    button.addEventListener("click", function () {
+      const row = button.closest("tr");
+      if (confirm("Are you sure you want to delete this item?")) {
+        row.remove();
+      }
     });
   });
 });
