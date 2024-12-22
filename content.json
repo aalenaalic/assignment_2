@@ -1,0 +1,16 @@
+{
+  "blogPosts": [
+    {
+      "title": "Understanding JavaScript",
+      "author": "Alen Alic",
+      "date": "2024-12-22",
+      "content": "JavaScript is a versatile programming language used for web development..."
+    },
+    {
+      "title": "CSS Grid Layout",
+      "author": "Alen Alic",
+      "date": "2024-12-22",
+      "content": "CSS Grid Layout provides a two-dimensional grid-based layout system..."
+    }
+  ]
+}

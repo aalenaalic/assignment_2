@@ -140,3 +140,22 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 });
+$(document).ready(function () {
+  // Fetch the JSON data
+  $.getJSON("content.json", function (data) {
+    const blogPosts = data.blogPosts;
+    const container = $("#blogPostsContainer");
+
+    // Iterate over each blog post and create HTML elements
+    blogPosts.forEach(function (post) {
+      const postElement = `
+        <div class="blog-post">
+          <h3>${post.title}</h3>
+          <p><strong>By ${post.author}</strong> on ${post.date}</p>
+          <p>${post.content}</p>
+        </div>
+      `;
+      container.append(postElement);
+    });
+  });
+});

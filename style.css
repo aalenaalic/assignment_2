@@ -207,3 +207,23 @@ body {
   font-weight: bold;
   color: red;
 }
+#blogPostsContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.blog-post {
+  background-color: #fff;
+  padding: 15px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.blog-post h3 {
+  margin-top: 0;
+}
+
+.blog-post p {
+  margin: 5px 0;
+}
